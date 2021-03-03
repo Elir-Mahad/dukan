@@ -1,21 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+//! ------------------------------------------------- IMPORTS
+// below are foundational imports that come with the app
+import React from "react";
+
+// below imports are from react navigation
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+
+// below are the different screen components
+import StackNavigator from "./screens/StackNavigator";
+//
+import { StateProvider } from "./screens/StateProvider";
+import { initialState } from "./screens/reducer.js";
+import reducer from "./screens/reducer";
+//! ------------------------------------------------- APP functional component
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+	//
+	return (
+		<NavigationContainer>
+			<StateProvider initialState={initialState} reducer={reducer}>
+				<StackNavigator />
+			</StateProvider>
+		</NavigationContainer>
+	);
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
